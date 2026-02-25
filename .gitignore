@@ -1,0 +1,17 @@
+.DS_Store
+*.pdf
+*.pptx
+*.xlsx
+*.docx
+*.csv
+*.ipynb
+
+node_modules/
+target/
+.vscode/
+
+FE_CSS/bootstrap/
+0.Environment Setting/
+1.Lecture Material/
+2.SQLD/
+3.temp/

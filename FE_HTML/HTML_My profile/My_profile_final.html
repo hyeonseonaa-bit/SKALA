@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Profile_나현서</title>
+</head>
+<body>
+    <header><h1>My Profile_나현서</h1></header>
+    <p>안녕하세요, 저는 나현서입니다.</p>
+    <p>이곳은 제 프로필 페이지입니다.</p>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/S-yABpcMaQs?si=v_dzgnhHs9d6bRzH" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+    <hr/>
+
+    <section>
+        <table border="0" cellpadding="10" cellspacing="0">
+    <tr>
+      <td>
+        <article>
+          <h3>프로필 이미지</h3>
+          <img src="/asset/profile.jpg" alt="프로필 사진" width="250" height="300">
+        </article>
+      </td>
+      <td>
+        <aside>
+           <h3>기본 정보</h3>
+        <table border="1" cellpadding="8" cellspacing="0" width="300">
+      <thead>
+       <tr bgcolor="#cdcdcd">
+         <th align="center">이름</th>
+         <th align="center">나이</th>
+         <th align="center">전공</th>
+       </tr>
+      </thead>
+
+     <tbody>
+       <tr>
+         <td align="center">나현서</td>
+         <td align="center">26</td>
+         <td align="center">화학공학</td>
+       </tr>
+     </tbody>
+     </table> 
+         </aside>
+       </td>
+    </table>
+    </section>
+    
+
+    <br>
+        <h3>🥑내가 좋아하는 음식</h3>
+    <ul style="list-style-type: disc;">
+        <li>아보카도</li>
+        <li>초밥</li>
+        <li>치킨</li>
+    </ul>
+    <h3>✅올 해 할 일</h3>
+    <ol>
+        <li>책 15권 읽기</li>
+        <li>러닝 페이스 6 만들기</li>
+        <li>뉴질랜드 여행가기</li>
+    </ol>
+    <h3>🙋나를 설명하는 단어들</h3>
+    <dl>
+        <dt><span style="color: orange;"><h3>INFJ</h3></span></dt>
+        <dd>내면의 감정을 잘 이해하고, 자신의 감정을 잘 표현하는 성격</dd>
+        <dt><span style="color: orange;"><h3>긍정긍살</h3></span></dt>
+        <dd>긍정적인 에너지를 가지고 있으며, 주변 사람들에게도 긍정적인 영향을 주는 성격</dd>
+    </dl>
+    <h3>📕최근 나의 관심사 블로그</h3>
+    <a href="https://in.naver.com/iron">나의 관심사 블로그</a>
+    <br/><br/>
+    <h3>😺당신이 가장 좋아하는 동물을 선택하세요🐵</h3>
+    <form>
+      <select id="mySelect" onchange="showSelectedValue()">
+        <option value="">-- 선택 --</option>
+        <option value="elephant">코끼리</option>
+        <option value="penguin">펭귄</option>
+        <option value="turtle">거북이</option>
+      </select>
+
+  <div class="result" id="resultText">
+    선택된 항목이 여기에 표시됩니다.
+  </div>
+
+  <script>
+    function showSelectedValue() {
+      const select = document.getElementById("mySelect");
+      const selectedText = select.options[select.selectedIndex].text;
+      const selectedValue = select.value;
+
+      if (selectedValue === "myselect") {
+        document.getElementById("resultText").innerText =
+          "선택된 항목이 여기에 표시됩니다.";
+      } else {
+        document.getElementById("resultText").innerText =
+          `선택된 항목: ${selectedValue}`;
+      }
+    }
+  </script>
+</body>
+</html>

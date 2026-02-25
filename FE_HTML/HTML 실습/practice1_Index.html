@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>"Welcome SKALA"</title>
+</head>
+<body>
+    <h1>환영 인사</h1>
+    <p>스칼라에 오신 것을 환영합니다.</p>
+    <hr/>
+    <p>이 문장은 수평선 아래에 나타난다</p>
+    <a href="https://app.slack.com/client/T089ENT4A2D/C0A2C2GC4BY">Slack 채널로 이동</a>
+    <p>오늘은 <span style="color:orange;"> 행복한 날</span>입니다.</p>
+    <h1>최고의 웹사이트</h1>
+    <h2>웹사이트 소개</h2>
+    <h3>서비스</h3>
+    <h4>가격</h4>
+    <h5>고객 리뷰</h5>
+    <h6>연락처</h6>
+    <p>웹 서빕스 개발은 흥미롭고 보람있는 경험입니다.</p>
+    <p>첫 번째 문장입니다.<br>줄바꿈 후 두 번째 문장입니다.</p>
+    <em>배고파</em>
+    <strong>진짜 <sub>진짜</sub> 배고파</strong>
+    <sup>1000000</sup>
+    <div>첫번째 DIV 영역</div><div>두번째 DIV 영역</div><div>세번째 DIV 영역</div>
+    <hr>
+    <span>#1번 SPAN 구역</span><span>#2번 SPAN 구역</span><span>#3번 SPAN 구역</span>
+    <ol type="A" start="5">
+        <li>Element</li>
+        <li>Frog</li>
+    </ol>
+    <ul type="square">
+        <li>Apple</li>
+        <li>Banana</li>
+    </ul>
+    <ol>
+        <li>First item
+        <ol>
+         <li>Second item</li>
+         <li>Third item</li>
+        </ol>
+        </li>
+        <li>Fourth item</li>
+        <li>Fifth item</li>
+    </ol>
+    <dl>
+        <dt>HTML</dt>
+        <dd>HyperText Markup Language</dd>
+        <dt>CSS</dt>
+        <dd>Cascading Style Sheets</dd>
+        <dt>JS</dt>
+        <dd>JavaScript</dd>
+    </dl>
+    <table border="1" cellpadding="8" cellspacing="0" width="300">
+    <thead>
+      <tr bgcolor="light blue">
+        <th align="center">이름</th>
+        <th align="center">나이</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr>
+        <td align="center">나현서</td>
+        <td align="center">26</td>
+      </tr>
+    </tbody>
+  </table>
+<form>
+    <fieldset>
+    <legend>회원 가입</legend>
+    <label for="username">사용자 이름:</label>
+    <input type="text" id="name" name="username"><br><br>
+    <label for="email">이메일:</label>
+    <input type="email" id="email" name="email"><br><br>
+    <label for="password">비밀번호:</label>
+    <input type="password" id="password" name="password"><br><br>
+    </fieldset>
+    <fieldset>
+    <legend>성별</legend>
+    <label for="male">남성</label>
+    <input type="radio" id="male" name="gender" value="male">   <br><br>    
+    <label for="female">여성</label>
+    <input type="radio" id="female" name="gender" value="female"><br><br>
+    </fieldset>
+
+    <button type="submit">가입하기</button>
+</form>
+
+
+<h2>🍇좋아하는 과일을 선택하세요</h2>
+<select id="fruitSelect">
+    <option value="apple">사과</option>
+    <option value="banana">바나나</option>
+    <option value="cherry">체리</option>
+    <option value="date">대추야자</option>
+</select>
+
+<p id="msg">아직 선택하지 않았어요.</p>
+
+<script>
+  const select = document.getElementById("fruitSelect");
+  const msg = document.getElementById("msg");
+
+  select.addEventListener("change", () => {
+    const text = select.options[select.selectedIndex].text; // 화면에 보이는 글자
+    msg.textContent = `선택한 과일: ${text}`;
+  });
+</script>
+
+<img src="/asset/profile.jpg" alt="프로필 사진" width="250" height="300">
+<br> 
+<audio controls>
+    <source src="/asset/sample-audio.mp3" type="audio/mpeg">
+    </audio>
+<br> 
+<video width="320" height="240" controls>  
+    <source src="/asset/sample-video.mp4" type="video/mp4">
+    </video>  
+<br>  
+<picture>
+    <source media="(max-width:600px)" srcset="small.jpg">
+    <source media="(max-width:1200px)" srcset="large.jpg">
+    <image src="/asset/profile.jpg" alt="Responsive Image">
+    </picture>
+
+
+<h1>🍉🍊좋아하는 과일을 선택하세요🍎🍋</h1>
+  <select id="mySelect" onchange="showSelectedValue()">
+    <option value="">-- 선택 --</option>
+    <option value="apple">사과</option>
+    <option value="banana">바나나</option>
+    <option value="orange">오렌지</option>
+  </select>
+
+  <div class="result" id="resultText">
+    선택된 항목이 여기에 표시됩니다.
+  </div>
+
+  <script>
+    function showSelectedValue() {
+      const select = document.getElementById("mySelect");
+      const selectedText = select.options[select.selectedIndex].text;
+      const selectedValue = select.value;
+
+      if (selectedValue === "myselect") {
+        document.getElementById("resultText").innerText =
+          "선택된 항목이 여기에 표시됩니다.";
+      } else {
+        document.getElementById("resultText").innerText =
+          `선택된 항목: ${selectedValue}`;
+      }
+    }
+  </script>
+
+</picture> 
+</body>
+</html>
