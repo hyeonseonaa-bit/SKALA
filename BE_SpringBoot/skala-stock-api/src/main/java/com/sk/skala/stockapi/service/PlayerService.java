@@ -31,7 +31,7 @@ import lombok.RequiredArgsConstructor;
 
 // @Service: 이 클래스가 Spring의 서비스 계층 빈임을 선언
 @Service
-// @RequiredArgsConstructor: final 필드를 인자로 받는 생성자를 Lombok이 자동 생성 (의존성 주입)
+// @RequiredArgsConstructor: final 필드를 인자로 받는 생성자를 Lombok이 자동 생성 (의존성 주입)(의존성 주입)
 @RequiredArgsConstructor
 public class PlayerService {
 
