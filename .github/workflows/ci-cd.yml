@@ -21,7 +21,7 @@ env:
   K8S_CONTAINER_NAME: app
   HARBOR_REGISTRY: amdp-registry.skala-ai.com
   HARBOR_PROJECT: skala26a-ai1
-  IMAGE_NAME: A3010-skala-stock-api
+  IMAGE_NAME: a3010-skala-stock-api
 
 jobs:
   ci:
