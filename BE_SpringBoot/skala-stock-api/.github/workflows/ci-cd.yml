@@ -19,8 +19,8 @@ env:
   K8S_NAMESPACE: skala3-ai1-devops
   K8S_DEPLOYMENT_NAME: skala-stock-api
   K8S_CONTAINER_NAME: app
-  HARBOR_REGISTRY: harbor.example.com
-  HARBOR_PROJECT: skala3-ai1-devops
+  HARBOR_REGISTRY: amdp-registry.skala-ai.com
+  HARBOR_PROJECT: skala26a-ai1
   IMAGE_NAME: skala-stock-api
 
 jobs:
