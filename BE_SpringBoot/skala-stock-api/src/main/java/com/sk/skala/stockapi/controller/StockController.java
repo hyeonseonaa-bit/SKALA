@@ -60,9 +60,8 @@ public class StockController {
 	}
 
 	// 주식 삭제 API
-	// DELETE /api/stocks
 	@DeleteMapping
-	public Response deleteStock(@RequestBody Stock stock) { // 삭제할 주식 정보 (id) 전달
+	public Response deleteStock(@RequestBody Stock stock) {
 		return stockService.deleteStock(stock);
 	}
 }
