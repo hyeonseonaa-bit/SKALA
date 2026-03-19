@@ -21,7 +21,7 @@ env:
   K8S_CONTAINER_NAME: app
   HARBOR_REGISTRY: amdp-registry.skala-ai.com
   HARBOR_PROJECT: skala26a-ai1
-  IMAGE_NAME: skala-stock-api
+  IMAGE_NAME: A3010 skala-stock-api
 
 jobs:
   ci:
@@ -99,39 +99,3 @@ jobs:
             ${{ steps.meta.outputs.full_image }}
             ${{ env.HARBOR_REGISTRY }}/${{ env.HARBOR_PROJECT }}/${{ env.IMAGE_NAME }}:latest
 
-      - name: Configure AWS credentials
-        uses: aws-actions/configure-aws-credentials@v5.1.0
-        with:
-          role-to-assume: arn:aws:iam::123456789012:role/github-actions-eks-role
-          aws-region: ${{ env.AWS_REGION }}
-
-      - name: Install kubectl
-        run: |
-          curl -LO "https://dl.k8s.io/release/$(curl -Ls https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
-          chmod +x kubectl
-          sudo mv kubectl /usr/local/bin/
-          kubectl version --client
-
-      - name: Update kubeconfig for EKS
-        run: |
-          aws eks update-kubeconfig \
-            --region "${AWS_REGION}" \
-            --name "${EKS_CLUSTER_NAME}"
-
-      - name: Verify AWS identity and cluster access
-        run: |
-          aws sts get-caller-identity
-          kubectl get ns
-
-      - name: Deploy new image to EKS
-        run: |
-          kubectl -n "${K8S_NAMESPACE}" set image deployment/"${K8S_DEPLOYMENT_NAME}" \
-            "${K8S_CONTAINER_NAME}"="${{ steps.meta.outputs.full_image }}"
-
-      - name: Wait for rollout
-        run: |
-          kubectl -n "${K8S_NAMESPACE}" rollout status deployment/"${K8S_DEPLOYMENT_NAME}" --timeout=300s
-
-      - name: Show deployed image
-        run: |
-          kubectl -n "${K8S_NAMESPACE}" get deployment "${K8S_DEPLOYMENT_NAME}" -o wide
