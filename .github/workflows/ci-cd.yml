@@ -10,15 +10,13 @@ on:
   workflow_dispatch:
 
 permissions:
-  id-token: write
   contents: read
 
 env:
   AWS_REGION: ap-northeast-2
   EKS_CLUSTER_NAME: skala-2025
-  K8S_NAMESPACE: skala3-ai1-devops
-  K8S_DEPLOYMENT_NAME: skala-stock-api
-  K8S_CONTAINER_NAME: app
+  K8S_NAMESPACE: skala3-ai1
+  K8S_DEPLOYMENT_NAME: sk3010
   HARBOR_REGISTRY: amdp-registry.skala-ai.com
   HARBOR_PROJECT: skala26a-ai1
   IMAGE_NAME: a3010-skala-stock-api
@@ -99,3 +97,45 @@ jobs:
             ${{ steps.meta.outputs.full_image }}
             ${{ env.HARBOR_REGISTRY }}/${{ env.HARBOR_PROJECT }}/${{ env.IMAGE_NAME }}:latest
 
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ env.AWS_REGION }}
+
+      - name: Install kubectl
+        working-directory: /tmp
+        run: |
+          curl -LO "https://dl.k8s.io/release/$(curl -Ls https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+          chmod +x kubectl
+          sudo mv kubectl /usr/local/bin/
+          kubectl version --client
+
+      - name: Update kubeconfig for EKS
+        run: |
+          aws eks update-kubeconfig \
+            --region "${AWS_REGION}" \
+            --name "${EKS_CLUSTER_NAME}"
+
+      - name: Verify cluster access
+        run: kubectl get ns
+
+      - name: Apply Kubernetes manifests
+        run: |
+          kubectl apply -f deployment.yaml
+          kubectl apply -f service.yaml
+
+      - name: Update deployment image
+        run: |
+          kubectl set image deployment/${K8S_DEPLOYMENT_NAME} \
+            my-app=${{ steps.meta.outputs.full_image }} \
+            -n ${K8S_NAMESPACE}
+
+      - name: Wait for rollout
+        run: |
+          kubectl -n "${K8S_NAMESPACE}" rollout status deployment/"${K8S_DEPLOYMENT_NAME}" --timeout=300s
+
+      - name: Show deployed image
+        run: |
+          kubectl -n "${K8S_NAMESPACE}" get deployment "${K8S_DEPLOYMENT_NAME}" -o wide
