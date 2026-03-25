@@ -5,7 +5,7 @@ metadata:
   namespace: skala3-ai1
 spec:
   selector:
-    app: my-app
+    app: sk3010
   ports:
   - protocol: TCP
     port: 8080

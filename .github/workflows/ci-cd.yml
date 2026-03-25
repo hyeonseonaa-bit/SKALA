@@ -129,7 +129,7 @@ jobs:
       - name: Update deployment image
         run: |
           kubectl set image deployment/${K8S_DEPLOYMENT_NAME} \
-            my-app=${{ steps.meta.outputs.full_image }} \
+            sk3010=${{ steps.meta.outputs.full_image }} \
             -n ${K8S_NAMESPACE}
 
       - name: Wait for rollout
