@@ -18,3 +18,10 @@ spec:
         image: amdp-registry.skala-ai.com/skala26a-ai1/a3010-skala-stock-api@sha256:be86f76be31a830e45862ac24d4f36a4a27c9e48c2d446db42c037c9df475121
         ports:
         - containerPort: 8080
+        volumeMounts:
+        - name: sk3010-storage
+          mountPath: /data
+      volumes:
+      - name: sk3010-storage
+        persistentVolumeClaim:
+          claimName: sk3010-pvc
