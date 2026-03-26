@@ -4,7 +4,7 @@ metadata:
   name: sk3010
   namespace: skala3-ai1
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: sk3010
