@@ -1,5 +1,6 @@
 package com.sk.skala.stockapi.controller;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -26,8 +27,19 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class StockController {
 
+	@Value("${APP_VERSION:v1}")
+	private String appVersion;
+
 	// StockService를 주입받아 비즈니스 로직 처리에 사용
 	private final StockService stockService;
+
+	@GetMapping("/api-version")
+	public Response getVersion() {
+		Response response = new Response();
+		response.setResult(Response.SUCCESS);
+		response.setBody(java.util.Map.of("version", appVersion));
+		return response;
+	}
 
 	// 전체 주식 목록 조회 API
 	// GET /api/stocks/list?offset=0&count=10

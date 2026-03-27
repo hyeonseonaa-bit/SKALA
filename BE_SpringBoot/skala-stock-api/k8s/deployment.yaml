@@ -18,6 +18,9 @@ spec:
         image: amdp-registry.skala-ai.com/skala26a-ai1/a3010-skala-stock-api:d9c4538
         ports:
         - containerPort: 8080
+        env:
+        - name: APP_VERSION
+          value: "v1"
         volumeMounts:
         - name: sk3010-storage
           mountPath: /data
