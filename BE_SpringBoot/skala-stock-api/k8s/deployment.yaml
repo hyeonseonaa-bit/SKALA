@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: sk3010
-        image: amdp-registry.skala-ai.com/skala26a-ai1/a3010-skala-stock-api:395a61f
+        image: amdp-registry.skala-ai.com/skala26a-ai1/a3010-skala-stock-api:700f072
         ports:
         - containerPort: 8080
         env:
