@@ -1,0 +1,27 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: sk3010-ingress-canary
+  namespace: skala3-ai1
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+    nginx.ingress.kubernetes.io/rewrite-target: /$2
+    nginx.ingress.kubernetes.io/canary: "true"
+    nginx.ingress.kubernetes.io/canary-weight: "10"
+spec:
+  ingressClassName: public-nginx
+  rules:
+    - host: sk3010.project.skala-ai.com
+      http:
+        paths:
+          - path: /sk3010(/|$)(.*)
+            pathType: ImplementationSpecific
+            backend:
+              service:
+                name: sk3010-service-v2
+                port:
+                  number: 8080
+  tls:
+    - hosts:
+        - sk3010.project.skala-ai.com
+      secretName: skala25-project-tls-cert

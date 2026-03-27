@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: sk3010-service-v2
+  namespace: skala3-ai1
+spec:
+  selector:
+    app: sk3010
+    version: v2
+  ports:
+  - protocol: TCP
+    port: 8080
+    targetPort: 8080
+  type: ClusterIP
